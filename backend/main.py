@@ -225,13 +225,19 @@ async def cleanup_old_messages():
 class ChatInput(BaseModel):
     message: str = Field(..., min_length=1, max_length=1000, description="User message")
     userName: str = Field(..., min_length=1, max_length=50, description="Username")
-    
+    moodHistory: Optional[List[Dict]] = Field(default=None, description="User mood history")
+    messageCount: Optional[int] = Field(default=0, description="Message count")
+    crisisLevel: Optional[str] = Field(default='none', description="Crisis level")
+
+    class Config:
+        extra = 'ignore'  # Ignore any extra fields not defined in the model
+
     @validator('message')
     def message_not_empty(cls, v):
         if not v.strip():
             raise ValueError('Message cannot be empty or whitespace only')
         return v.strip()
-    
+
     @validator('userName')
     def username_valid(cls, v):
         if not v.strip():
@@ -268,6 +274,8 @@ app = FastAPI(
 origins = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
     "http://localhost:5173",
     "http://127.0.0.1:5173",
 ]
@@ -276,8 +284,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
-    allow_headers=["Content-Type", "Authorization", "X-Session-ID"], # <-- ADD IT HERE
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
 )
 # --- Helper Functions ---
 def detect_crisis(message: str) -> bool:

@@ -705,5 +705,17 @@
       "content": "Oh, dfdfd, I hear that frustration coming through again. It sounds like those feelings are still very present for you, and that's completely valid. Sometimes it can be tough when a feeling lingers. Would you like to talk more about what's making you feel this way?",
       "timestamp": "2025-11-08T19:59:25.229320"
     }
+  ],
+  "ssd": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-09T01:08:34.204423"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, ssd, it sounds like you're feeling incredibly frustrated right now. That's a really tough emotion to carry, and it's completely okay to feel that way. Would you like to tell me a bit more about what's going on?",
+      "timestamp": "2025-11-09T01:08:38.135115"
+    }
   ]
 }
