@@ -7,7 +7,6 @@ import VoiceSentiment from './VoiceSentiment';
 
 function App() {
   // --- STATE VARIABLES ---
-  // All hooks MUST be called at the top, before any returns.
   const [showLandingPage, setShowLandingPage] = useState(true);
   const [showNameInput, setShowNameInput] = useState(true);
   const [currentPage, setCurrentPage] = useState('chat');
@@ -27,12 +26,18 @@ function App() {
   const [moodTrend, setMoodTrend] = useState('neutral');
   const [networkStatus, setNetworkStatus] = useState('online');
   const [unreadPetNotifications, setUnreadPetNotifications] = useState(false);
+  const [lastVoiceResponseTime, setLastVoiceResponseTime] = useState(0);
+  
+  // --- NEW: Additional features for hackathon ---
+  const [isTyping, setIsTyping] = useState(false);
+  const [breathingExerciseActive, setBreathingExerciseActive] = useState(false);
   
   // Refs
   const messagesEndRef = useRef(null);
   const chatWindowRef = useRef(null);
   const inputRef = useRef(null);
   const abortControllerRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
 
   // --- CONSTANTS ---
   const QUICK_REPLIES = useMemo(() => [
@@ -43,12 +48,12 @@ function App() {
     { text: '😐 Neutral', emoji: '😐', mood: 'neutral', value: 3 }
   ], []);
 
-  // --- PERFORMANCE OPTIMIZATION (Moved to top) ---
+  // --- PERFORMANCE: Memoize visible messages ---
   const visibleMessages = useMemo(() => {
-    return messages.slice(-50); // Only render the last 50 messages
+    return messages.slice(-50);
   }, [messages]);
 
-  // --- ENHANCED CRISIS DETECTION ---
+  // --- CRISIS DETECTION ---
   const detectCrisisLevel = useCallback((message) => {
     const lowerMessage = message.toLowerCase();
     const severeCrisis = ['suicide', 'kill myself', 'end my life', 'want to die'];
@@ -80,7 +85,6 @@ function App() {
     return colors[trend] || '#b8a5e0';
   }, []);
 
-  // --- MOOD-ADAPTIVE STYLES (Moved to top) ---
   const appStyle = useMemo(() => ({
     '--primary-color': getMoodColor(moodTrend),
     '--glow-intensity': moodTrend === 'very-positive' ? '20px' : '10px'
@@ -104,6 +108,49 @@ function App() {
     if (hours > 0) return `${hours}h ${minutes}m`;
     return `${minutes}m ${seconds}s`;
   }, [currentTime, sessionStartTime]);
+
+  // --- NEW: Breathing Exercise ---
+  const startBreathingExercise = useCallback(() => {
+    setBreathingExerciseActive(true);
+    const breathingMessage = {
+      from: 'bot',
+      text: "Let's take a moment to breathe together. 🧘‍♀️\n\nInhale deeply for 4 seconds... Hold for 4... Exhale for 4... Hold for 4.\n\nRepeat this cycle 3 times. I'll wait here for you.",
+      timestamp: new Date().toISOString(),
+      isBreathing: true
+    };
+    setMessages(prev => [...prev, breathingMessage]);
+    
+    // Auto-follow up after 60 seconds
+    setTimeout(() => {
+      const followUp = {
+        from: 'bot',
+        text: "How are you feeling now? Sometimes just a minute of breathing can make a difference. 💚",
+        timestamp: new Date().toISOString()
+      };
+      setMessages(prev => [...prev, followUp]);
+      setBreathingExerciseActive(false);
+    }, 60000);
+  }, []);
+
+  // --- NEW: Detect if user is typing (for better UX) ---
+  const handleInputChange = useCallback((e) => {
+    setUserInput(e.target.value);
+    
+    // Show "user is typing" indicator to backend (if needed)
+    if (!isTyping) {
+      setIsTyping(true);
+    }
+    
+    // Clear existing timeout
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+    
+    // Set new timeout
+    typingTimeoutRef.current = setTimeout(() => {
+      setIsTyping(false);
+    }, 1000);
+  }, [isTyping]);
 
   // --- EFFECTS ---
   useEffect(() => {
@@ -148,10 +195,13 @@ function App() {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
       }
+      if (typingTimeoutRef.current) {
+        clearTimeout(typingTimeoutRef.current);
+      }
     };
   }, []);
 
-  // --- PROACTIVE WELLNESS NUDGE ---
+  // --- PROACTIVE WELLNESS NUDGE (Enhanced) ---
   useEffect(() => {
     if (moodHistory.length >= 3) {
       const recentMoods = moodHistory.slice(-3);
@@ -160,18 +210,20 @@ function App() {
       if (allNegative && messages.length > 0 && messages[messages.length - 1]?.from !== 'bot') {
         const supportMessage = {
           from: 'bot',
-          text: `${userName}, I've noticed you've been feeling down. Remember, it's okay to not be okay. Would you like to try a breathing exercise or talk about what's on your mind?`,
+          text: `${userName}, I've noticed you've been feeling down. Remember, it's okay to not be okay. Would you like to try a breathing exercise? 🧘‍♀️`,
           timestamp: new Date().toISOString(),
-          isProactive: true
+          isProactive: true,
+          hasBreathingOption: true
         };
-            
-        setTimeout(() => {
+        
+        const timer = setTimeout(() => {
           setMessages(prev => [...prev, supportMessage]);
         }, 5000);
+        
+        return () => clearTimeout(timer);
       }
     }
   }, [moodHistory, userName, messages]);
-
 
   // --- HANDLER FUNCTIONS ---
   const handleStartChat = useCallback(() => {
@@ -207,6 +259,15 @@ function App() {
         isError: true
       };
       setMessages(prev => [...prev, offlineMessage]);
+      return;
+    }
+
+    // --- NEW: Check for breathing exercise trigger ---
+    if (messageText.toLowerCase().includes('breathing') || 
+        messageText.toLowerCase().includes('breathe') ||
+        messageText.toLowerCase().includes('calm down')) {
+      startBreathingExercise();
+      setUserInput('');
       return;
     }
 
@@ -252,7 +313,8 @@ function App() {
           message: messageText,
           userName: userName,
           moodHistory: moodHistory.slice(-10),
-          messageCount: messageCount
+          messageCount: messageCount,
+          crisisLevel: crisisDetected
         }),
         signal: abortControllerRef.current.signal,
       });
@@ -309,7 +371,7 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-  }, [userInput, userName, detectCrisisLevel, moodHistory, messageCount, networkStatus, sessionStartTime, logAnalytics]);
+  }, [userInput, userName, detectCrisisLevel, moodHistory, messageCount, networkStatus, sessionStartTime, logAnalytics, startBreathingExercise]);
 
   const handleQuickReply = useCallback((reply) => {
     logAnalytics('QUICK_REPLY', { reply: reply.text, mood: reply.mood, value: reply.value });
@@ -322,21 +384,28 @@ function App() {
       source: 'button'
     };
     setMoodHistory(prevHistory => [...prevHistory, moodEntry]);
-    if (moodHistory.length === 0) {
-      const acknowledgment = {
-        from: 'bot',
-        text: QUICK_REPLIES.find(r => r.mood === reply.mood)?.text || 'Thanks for sharing.',
-        timestamp: new Date().toISOString(),
-        isMoodAck: true
-      };
-      setMessages(prev => [...prev, acknowledgment]);
-    }
-    handleSend(reply.text);
-  }, [moodHistory.length, logAnalytics, handleSend, QUICK_REPLIES]);
+    
+    // --- NEW: Don't send duplicate message to chat ---
+    const acknowledgment = {
+      from: 'bot',
+      text: `I see you're feeling ${reply.mood}. ${reply.value <= 2 ? "I'm here for you. Want to talk about it?" : "That's good to hear! What's contributing to this feeling?"}`,
+      timestamp: new Date().toISOString(),
+      isMoodAck: true
+    };
+    setMessages(prev => [...prev, acknowledgment]);
+    
+  }, [logAnalytics]);
 
-  // --- NEW VOICE HANDLER ---
   const handleSentimentDetected = useCallback((data) => {
     logAnalytics('VOICE_SENTIMENT', data);
+    
+    const now = Date.now();
+    const cooldown = 15000;
+    if (now - lastVoiceResponseTime < cooldown) {
+      console.log('Voice cooldown active. Ignoring.');
+      return;
+    }
+
     const emotionToMoodMap = {
       'happy': { emoji: '😊', value: 5, mood: 'happy' },
       'sad': { emoji: '😔', value: 2, mood: 'sad' },
@@ -347,16 +416,18 @@ function App() {
       'neutral': { emoji: '😐', value: 3, mood: 'neutral' }
     };
     const moodData = emotionToMoodMap[data.emotion] || emotionToMoodMap['neutral'];
+
     const moodEntry = {
       emoji: moodData.emoji,
       mood: moodData.mood,
       value: moodData.value,
       timestamp: data.timestamp || new Date().toISOString(),
-      text: `(Voice: ${data.emotion})`,
+      text: `Voice: ${data.emotion}`,
       confidence: data.confidence,
       source: 'voice'
     };
     setMoodHistory(prevHistory => [...prevHistory, moodEntry]);
+
     const contextualMessages = {
       'happy': "I can hear the positivity in your voice! What's making you feel good today?",
       'sad': "I sense some sadness in your tone. I'm here to listen. Want to talk about it?",
@@ -364,14 +435,18 @@ function App() {
       'anxious': "Your voice suggests you might be feeling anxious. Take a deep breath with me.",
       'neutral': "Thanks for sharing. How are things really going?"
     };
+    
     const botMessage = {
       from: 'bot',
       text: contextualMessages[data.emotion] || contextualMessages['neutral'],
       timestamp: new Date().toISOString(),
       isVoiceResponse: true
     };
+    
     setMessages(prev => [...prev, botMessage]);
-  }, [logAnalytics]);
+    setLastVoiceResponseTime(now);
+
+  }, [logAnalytics, lastVoiceResponseTime]);
   
   const handleKeyPress = useCallback((e) => {
     if (e.key === 'Enter' && !e.shiftKey) {
@@ -400,9 +475,38 @@ function App() {
     logAnalytics('NAVIGATION', { from: 'chat', to: 'pet', moodTrend });
   }, [moodTrend, logAnalytics]);
 
+  // --- RENDER MESSAGE COMPONENT (Memoized for performance) ---
+  const MessageComponent = React.memo(({ msg, index }) => (
+    <div
+      key={index}
+      className={`message ${msg.from} ${msg.isError ? 'error' : ''} ${msg.isProactive ? 'proactive' : ''}`}
+      role="article"
+      aria-label={`${msg.from === 'user' ? 'You' : 'Bot'} message`}
+    >
+      <div className="message-content">
+        <p>{msg.text}</p>
+        {msg.hasBreathingOption && (
+          <button 
+            onClick={startBreathingExercise}
+            className="breathing-btn"
+            aria-label="Start breathing exercise"
+          >
+            🧘‍♀️ Start Breathing Exercise
+          </button>
+        )}
+      </div>
+      <span className="message-timestamp">
+        {new Date(msg.timestamp).toLocaleTimeString([], { 
+          hour: '2-digit', 
+          minute: '2-digit' 
+        })}
+        {msg.responseTime && <span className="response-time"> • {msg.responseTime}ms</span>}
+      </span>
+    </div>
+  ));
+
   // --- RENDER LOGIC ---
   
-  // These 'if' statements are now AFTER all hooks, which is correct.
   if (showLandingPage) {
     return <LandingPage onStart={handleStartChat} />;
   }
@@ -485,10 +589,8 @@ function App() {
 
   return (
     <div 
-      className="App" 
-      style={appStyle} 
-      data-font-size={fontSize}
-      data-contrast={highContrast ? 'high' : 'normal'}
+      className={`App font-${fontSize} ${highContrast ? 'high-contrast' : ''}`}
+      style={appStyle}
     >
       <header className="App-header">
         <div className="chat-header">
@@ -510,14 +612,14 @@ function App() {
                   prev === 'small' ? 'medium' : prev === 'medium' ? 'large' : 'small'
                 )}
                 aria-label={`Change text size. Current: ${fontSize}`}
-                title={`Change text size. Current: ${fontSize}`}
+                title="Text size"
               >
                 A{fontSize === 'large' && '+'}{fontSize === 'small' && '-'}
               </button>
               <button 
                 onClick={() => setHighContrast(!highContrast)}
-                aria-label="Toggle high contrast mode"
-                title="Toggle high contrast mode"
+                aria-label="Toggle high contrast"
+                title="High contrast"
               >
                 {highContrast ? '🌙' : '☀️'}
               </button>
@@ -527,11 +629,11 @@ function App() {
               className="header-pet-btn" 
               title="Visit your buddy" 
               onClick={handleVisitPet}
-              aria-label="Visit your virtual pet"
+              aria-label="Visit pet"
             >
-              <span role="img" aria-label="pet icon">🐝</span>
+              <span role="img" aria-label="pet">🐝</span>
               {unreadPetNotifications && (
-                <span className="pet-notification-badge" aria-label="New notification">!</span>
+                <span className="pet-notification-badge">!</span>
               )}
             </button>
             
@@ -544,7 +646,7 @@ function App() {
               </span>
               <span 
                 className={`stat-item mood-indicator mood-${moodTrend}`}
-                title={`Mood trend: ${moodTrend}`}
+                title={`Mood: ${moodTrend}`}
               >
                 {moodTrend === 'very-positive' && '🌟'}
                 {moodTrend === 'positive' && '😊'}
@@ -576,23 +678,21 @@ function App() {
                 <a 
                   href="tel:988" 
                   className="crisis-button primary"
-                  aria-label="Call National Suicide Prevention Lifeline at 988"
+                  aria-label="Call 988"
                 >
-                  📞 Call 988 (Suicide & Crisis Lifeline)
+                  📞 Call 988 (Crisis Lifeline)
                 </a>
                 <a 
                   href="https://988lifeline.org/chat/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="crisis-button secondary"
-                  aria-label="Chat with crisis counselor online"
                 >
                   💬 Chat with Counselor
                 </a>
                 <button 
                   onClick={() => setCrisisLevel('none')}
                   className="crisis-dismiss"
-                  aria-label="Dismiss crisis alert"
                 >
                   I'm Safe - Continue Chat
                 </button>
@@ -601,119 +701,70 @@ function App() {
           </div>
         )}
 
-        <div
-          className="chat-window"
-          ref={chatWindowRef}
-          role="log"
-          aria-live="polite"
-          aria-label="Chat messages"
-        >
+        <div className="chat-window" ref={chatWindowRef}>
           {visibleMessages.map((msg, index) => (
-            <div
-              key={index}
-              className={`message ${msg.from} ${msg.isError ? 'error' : ''} ${msg.isProactive ? 'proactive' : ''}`}
-              role="article"
-              aria-label={`${msg.from === 'user' ? 'You' : 'Bot'} said: ${msg.text.substring(0, 50)}...`}
-            >
-              <p>{msg.text}</p>
-              <div className="message-meta">
-                {msg.timestamp && (
-                  <span className="message-time">
-                    {new Date(msg.timestamp).toLocaleTimeString([], {
-                      hour: '2-digit',
-                      minute: '2-digit'
-                    })}
-                  </span>
-                )}
-                {msg.responseTime && (
-                  <span className="message-response-time" title="AI response time">
-                    {msg.responseTime}ms
-                  </span>
-                )}
+            <MessageComponent key={index} msg={msg} index={index} />
+          ))}
+          
+          {isLoading && (
+            <div className="message bot loading-message">
+              <div className="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
               </div>
             </div>
-          ))}
-          {isLoading && (
-            <div className="message bot typing-indicator" role="status" aria-label="Bot is typing">
-              <p>
-                <span className="dot"></span>
-                <span className="dot"></span>
-                <span className="dot"></span>
-              </p>
-            </div>
           )}
+          
           <div ref={messagesEndRef} />
         </div>
-        
-        <MoodTracker 
-          history={moodHistory} 
-          trend={moodTrend}
-        />
 
-        <div className="quick-replies-container">
-          <div className="quick-replies" role="group" aria-label="Quick emotion responses">
+        {moodHistory.length > 0 && (
+          <div className="mood-summary">
+            <p>Recent: {moodHistory.slice(-5).map(m => m.emoji).join(' ')}</p>
+            <p className="mood-trend-text">Trend: {moodTrend}</p>
+          </div>
+        )}
+
+        {messages.length <= 3 && (
+          <div className="quick-replies">
             {QUICK_REPLIES.map((reply, index) => (
               <button
                 key={index}
                 onClick={() => handleQuickReply(reply)}
                 className="quick-reply-btn"
                 disabled={isLoading}
-                aria-label={`Quick reply: ${reply.text}`}
-                title={reply.text}
               >
                 {reply.emoji}
               </button>
             ))}
           </div>
-        </div>
+        )}
 
-        <div className="input-area">
+        <div className="input-container">
           <VoiceSentiment onSentimentDetected={handleSentimentDetected} />
           
-          <input
+          <textarea
             ref={inputRef}
-            type="text"
             value={userInput}
-            onChange={(e) => setUserInput(e.target.value)}
+            onChange={handleInputChange}
             onKeyPress={handleKeyPress}
             placeholder="Tell me how you're feeling..."
             disabled={isLoading || networkStatus === 'offline'}
-            aria-label="Type your message"
-            aria-describedby="send-button"
+            aria-label="Type message"
             maxLength="1000"
-            className="message-input"
+            className="chat-input"
+            rows="1"
           />
-          <div className="input-addon">
-            <span className="char-count" aria-live="polite">
-              {userInput.length}/1000
-            </span>
-            <button
-              id="send-button"
-              onClick={() => handleSend()}
-              disabled={isLoading || userInput.trim() === '' || networkStatus === 'offline'}
-              aria-label="Send message"
-              className="send-button"
-              title="Send message (Enter)"
-            >
-              {isLoading ? (
-                <>
-                  <span className="sending-icon">⏳</span>
-                  Sending...
-                </>
-              ) : (
-                <>
-                  <span className="send-icon">💚</span>
-                  Send
-                </>
-              )}
-            </button>
-          </div>
-        </div>
-        
-        <div className="chat-footer">
-          <p className="footer-text">
-            💡 <strong>Tip:</strong> Use quick replies {moodHistory.length > 0 && `(${moodHistory.length} moods tracked)`} or type for more detail
-          </p>
+          
+          <button
+            onClick={() => handleSend()}
+            disabled={isLoading || !userInput.trim() || networkStatus === 'offline'}
+            aria-label="Send"
+            className="send-btn"
+          >
+            {isLoading ? '...' : '➤'}
+          </button>
         </div>
       </header>
     </div>
