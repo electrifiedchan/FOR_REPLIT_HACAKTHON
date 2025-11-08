@@ -1,0 +1,709 @@
+{
+  "illubhi": [
+    {
+      "role": "user",
+      "content": "mereko sir dard hii",
+      "timestamp": "2025-11-08T04:59:43.672967"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh no, I'm sorry to hear you have a headache, illubhi. That sounds really uncomfortable and can be quite draining. Is there anything you've found that usually helps you feel a little better?",
+      "timestamp": "2025-11-08T04:59:47.353078"
+    },
+    {
+      "role": "user",
+      "content": "talk in hindi",
+      "timestamp": "2025-11-08T04:59:57.203012"
+    },
+    {
+      "role": "assistant",
+      "content": "\u091c\u093c\u0930\u0942\u0930, \u0907\u0932\u094d\u0932\u0941\u092d\u093f\u0964 \u0938\u093f\u0930\u0926\u0930\u094d\u0926 \u0935\u093e\u0915\u0908 \u092c\u0939\u0941\u0924 \u0905\u0938\u0939\u091c \u0939\u094b\u0924\u093e \u0939\u0948 \u0914\u0930 \u0925\u0915\u093e\u0928 \u092d\u0930\u093e \u0939\u094b \u0938\u0915\u0924\u093e \u0939\u0948\u0964 \u0915\u094d\u092f\u093e \u0906\u092a \u092c\u0924\u093e \u0938\u0915\u0924\u0940 \u0939\u0948\u0902 \u0915\u093f \u0906\u092a\u0915\u094b \u0915\u0948\u0938\u093e \u092e\u0939\u0938\u0942\u0938 \u0939\u094b \u0930\u0939\u093e \u0939\u0948, \u0914\u0930 \u0915\u094d\u092f\u093e \u0906\u092a\u0915\u094b \u0907\u0938 \u0938\u092e\u092f \u0915\u094b\u0908 \u0906\u0930\u093e\u092e \u092e\u093f\u0932\u093e \u0939\u0948?",
+      "timestamp": "2025-11-08T05:00:00.315953"
+    },
+    {
+      "role": "user",
+      "content": "talk in anglo hindi",
+      "timestamp": "2025-11-08T05:00:19.349665"
+    },
+    {
+      "role": "assistant",
+      "content": "\u091c\u093c\u0930\u0942\u0930, illubhi. I can definitely talk in Anglo-Hindi for you. Headache hona bahut mushkil ho sakta hai, aur main samajh sakti hoon ki aapko kaisa feel ho raha hoga. Kya aapne kuch try kiya hai jisse aapko thoda better feel ho?",
+      "timestamp": "2025-11-08T05:00:21.549089"
+    }
+  ],
+  "satwik": [
+    {
+      "role": "user",
+      "content": "i am black what to do",
+      "timestamp": "2025-11-08T05:14:54.180505"
+    },
+    {
+      "role": "assistant",
+      "content": "I hear you, Satwik. Being Black can bring a unique set of experiences and feelings, and I'm here to listen. Can you tell me more about what's on your mind when you ask 'what to do'?",
+      "timestamp": "2025-11-08T05:14:58.978090"
+    },
+    {
+      "role": "user",
+      "content": "they tell me nigga what to do it hurts u know",
+      "timestamp": "2025-11-08T05:15:19.657334"
+    },
+    {
+      "role": "assistant",
+      "content": "Satwik, I am so truly sorry you're experiencing such hurtful and dehumanizing words. It's completely understandable that being called something so hateful would cause immense pain. Please know that those slurs say absolutely nothing true about you, and no one deserves to be treated that way.",
+      "timestamp": "2025-11-08T05:15:23.304970"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T05:16:01.593711"
+    },
+    {
+      "role": "assistant",
+      "content": "Satwik, it makes complete sense that you're feeling sad after such a deeply hurtful experience. It's incredibly painful to be subjected to such hateful words, and your feelings are absolutely valid. I'm truly sorry you're going through this, and I'm here to listen if you want to share more.",
+      "timestamp": "2025-11-08T05:16:05.650616"
+    }
+  ],
+  "dd": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T05:20:46.869240"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh dd, it sounds like you're feeling a wave of anxiety right now, and that can be really tough. I'm here to listen. Would you like to share a bit more about what's making you feel this way?",
+      "timestamp": "2025-11-08T05:20:50.224919"
+    }
+  ],
+  "ff": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T05:31:15.978604"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, ff, I hear you. Feeling sad can be really heavy to carry. Would you like to share a little more about what's on your mind?",
+      "timestamp": "2025-11-08T05:31:20.246895"
+    },
+    {
+      "role": "user",
+      "content": "dd",
+      "timestamp": "2025-11-08T05:31:26.264942"
+    }
+  ],
+  "25": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T05:49:51.524509"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, 25, I'm so sorry to hear you're feeling anxious right now. That sounds really tough. Would you like to share a little more about what's on your mind?",
+      "timestamp": "2025-11-08T05:49:55.548056"
+    }
+  ],
+  "45": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T05:55:24.648631"
+    },
+    {
+      "role": "assistant",
+      "content": "That's wonderful to hear, 45! It brings a smile to my face just knowing you're feeling happy. What's bringing you that joyful feeling today?",
+      "timestamp": "2025-11-08T05:55:27.472949"
+    }
+  ],
+  "rt": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-08T05:58:29.887861"
+    },
+    {
+      "role": "assistant",
+      "content": "Thanks for sharing that, rt. It's perfectly okay to feel neutral. Sometimes that means not feeling strong emotions, or perhaps a sense of calm.\n\nCould you tell me a little more about what that \"neutral\" feeling is like for you right now?",
+      "timestamp": "2025-11-08T05:58:33.316214"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-08T06:20:35.607938"
+    },
+    {
+      "role": "assistant",
+      "content": "Thanks for sharing that again, rt. It sounds like that neutral feeling is quite prominent for you right now, and that's completely valid.\n\nSometimes it can be hard to put a feeling into words, especially if it's not a strong emotion. Would you like to explore anything else, or are you comfortable just sitting with that feeling for a bit?",
+      "timestamp": "2025-11-08T06:20:39.195190"
+    }
+  ],
+  "df": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T06:01:12.771370"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, df, I hear you're feeling anxious right now, and that sounds really tough. It takes a lot to acknowledge that feeling. Would you like to share a little more about what's on your mind, or would you prefer to just sit with it for a moment?",
+      "timestamp": "2025-11-08T06:01:15.442828"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:25:44.597313"
+    },
+    {
+      "role": "assistant",
+      "content": "I hear you, df. Feeling frustrated can be incredibly tough, and it's completely understandable to feel that way sometimes. It takes a lot of energy to carry that emotion. Would you like to share what's on your mind, or would you prefer to just sit with that feeling for a bit?",
+      "timestamp": "2025-11-08T18:25:48.704042"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T18:28:48.549462"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, df, it sounds like that anxious feeling has resurfaced, and I'm really sorry to hear that. It's completely valid to feel this way, and it takes strength to acknowledge it. Would you like to tell me more about what's happening, or are you just needing some space with the feeling right now?",
+      "timestamp": "2025-11-08T18:28:50.737371"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T18:29:08.032529"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, df, I hear that sadness has surfaced for you, and I'm truly sorry you're feeling this way. It's completely valid to experience these emotions, and it takes a lot of strength to acknowledge them. Would you like to share more about what's on your mind, or would you prefer some space with the feeling right now?",
+      "timestamp": "2025-11-08T18:29:11.583823"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T18:29:24.926843"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, df, I hear that sadness is still very much with you, and I'm truly sorry you're continuing to feel this way. It's completely valid to experience these emotions, and it takes a lot of strength to acknowledge them. I'm here for you, and you don't have to say anything; would you prefer for us to just sit with this feeling quietly for a bit?",
+      "timestamp": "2025-11-08T18:29:27.737509"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T18:29:35.448640"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, df, I can hear that this wave of sadness is still very much with you, and I'm so sorry it's lingering. It's completely okay for these feelings to stay for a while, and I want you to know I'm here, just sitting with you.",
+      "timestamp": "2025-11-08T18:29:40.502984"
+    }
+  ],
+  "rr": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T06:06:54.696490"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh rr, I hear that you're feeling frustrated right now. That can be a really challenging and often overwhelming emotion to experience. Would you like to tell me a little more about what's on your mind?",
+      "timestamp": "2025-11-08T06:06:57.711214"
+    }
+  ],
+  "sfdfsdf": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-08T06:54:28.011628"
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like you're feeling neutral right now, sfdfsdf. That's a completely valid way to feel. Sometimes it's a calm space, and other times it can mean things are a bit unclear. Is there anything specific you'd like to share, or are you just feeling balanced?",
+      "timestamp": "2025-11-08T06:54:31.673642"
+    }
+  ],
+  "ds": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T08:53:41.071164"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, ds, I hear you. It sounds like you're feeling really frustrated right now, and that's completely understandable.\n\nSometimes just acknowledging that feeling can be a first step. Is there anything you'd like to share about what's causing this frustration, or would you just prefer to vent?",
+      "timestamp": "2025-11-08T08:53:45.642942"
+    }
+  ],
+  "harshitha": [
+    {
+      "role": "user",
+      "content": "i am feeling hungry",
+      "timestamp": "2025-11-08T08:54:57.077486"
+    },
+    {
+      "role": "assistant",
+      "content": "Ah, feeling hungry can be quite distracting, can't it? It sounds like your body is letting you know it's time for some nourishment, Harshitha. Is there anything particular you're craving right now?",
+      "timestamp": "2025-11-08T08:55:01.153353"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T08:55:11.684164"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, Harshitha, I'm sorry to hear you're feeling anxious right now. That can be a really overwhelming feeling to experience. Is there anything specific that's contributing to it, or just a general sense of unease?",
+      "timestamp": "2025-11-08T08:55:15.839499"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T08:55:28.277273"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, Harshitha, I'm so sorry to hear you're feeling sad. That's a really heavy feeling to carry, and it's completely understandable to feel that way sometimes. Please know it's okay to feel what you're feeling, and I'm here to listen if you'd like to share what's weighing on your heart.",
+      "timestamp": "2025-11-08T08:55:33.337223"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-08T08:55:40.239898"
+    },
+    {
+      "role": "assistant",
+      "content": "Ah, Harshitha, it sounds like you've moved to a more neutral space, which is completely understandable after feeling anxious and sad. Sometimes that can be a moment of quiet, or simply a different place to be. Does this neutrality feel like a sense of calm for you, or something else?",
+      "timestamp": "2025-11-08T08:55:44.445081"
+    }
+  ],
+  "dsds": [
+    {
+      "role": "user",
+      "content": "daasasd",
+      "timestamp": "2025-11-08T14:05:06.933965"
+    },
+    {
+      "role": "assistant",
+      "content": "It looks like you typed 'daasasd', dsds. Sometimes it's tough to find the right words, or maybe that was a little typo. I'm here and ready to listen whenever you're ready to share what's on your mind.",
+      "timestamp": "2025-11-08T14:05:13.463825"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T14:16:17.628873"
+    },
+    {
+      "role": "assistant",
+      "content": "That's wonderful to hear, dsds! It's lovely to feel happy. What's making you smile today?",
+      "timestamp": "2025-11-08T14:16:20.040130"
+    }
+  ],
+  "dfff": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:12:58.409910"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfff, it sounds like you're feeling incredibly frustrated right now. That's a really challenging emotion to experience.\n\nSometimes just acknowledging that feeling can be a first step. Would you like to share a little more about what's making you feel frustrated?",
+      "timestamp": "2025-11-08T18:13:01.542825"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T18:16:28.993400"
+    },
+    {
+      "role": "assistant",
+      "content": "That's wonderful to hear, dfff! It's lovely that your feelings have shifted to happiness.\n\nWhat a positive change! Is there anything specific that brought about this happy feeling?",
+      "timestamp": "2025-11-08T18:16:31.391878"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:16:43.072254"
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like you're feeling that frustration again, dfff. It's completely understandable for emotions to shift, and it's okay to feel this way.\n\nI'm here to listen if you'd like to share what's on your mind.",
+      "timestamp": "2025-11-08T18:16:46.107439"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:17:03.135249"
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like that frustration is still very present for you, dfff. It's completely understandable for these feelings to persist, and it's okay to feel exactly what you're feeling.\n\nI'm here to listen without judgment. Is there anything specific you'd like to talk about regarding this frustration?",
+      "timestamp": "2025-11-08T18:17:05.826440"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-08T18:17:17.877378"
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like your feelings have shifted to neutral, dfff. It's completely okay for emotions to settle or feel a bit undefined sometimes.\n\nI'm here for you, no matter how you're feeling.",
+      "timestamp": "2025-11-08T18:17:20.541273"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T18:17:28.215260"
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like anxiety has crept in, dfff. That's a really challenging feeling to experience, and it's completely understandable for emotions to shift this way.\n\nI'm here to listen if you'd like to talk about what's on your mind, or we can just sit with this feeling for a moment.",
+      "timestamp": "2025-11-08T18:17:31.809126"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T18:17:39.298242"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfff, it sounds like sadness has come over you. That's a very real and often heavy feeling to carry, and it's completely understandable to feel this way.\n\nI'm here for you, truly, and it's okay to feel exactly what you're feeling right now.",
+      "timestamp": "2025-11-08T18:17:41.786139"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:21:04.875075"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfff, it sounds like frustration has come over you. That's a very real and often intense feeling to experience, and it's completely understandable to feel this way.\n\nI'm here for you, truly, and it's okay to feel exactly what you're feeling right now.",
+      "timestamp": "2025-11-08T18:21:09.147438"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:21:19.094262"
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like that frustration is still very present for you, dfff. It's completely valid to feel that way, especially when something feels persistent or overwhelming.\n\nI'm here for you, and it's okay to feel exactly what you're feeling right now.",
+      "timestamp": "2025-11-08T18:21:21.248962"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T18:21:29.350067"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfff, it sounds like anxiety is making its presence known now. That's a very real and often overwhelming feeling, and it's completely understandable to feel this way.\n\nI'm here for you, and it's okay to experience exactly what you're feeling right now.",
+      "timestamp": "2025-11-08T18:21:33.467442"
+    }
+  ],
+  "cat": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T18:33:04.363800"
+    },
+    {
+      "role": "assistant",
+      "content": "That's fantastic news, cat! It's always wonderful to hear you're feeling happy. What's bringing you joy today?",
+      "timestamp": "2025-11-08T18:33:08.503721"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:33:12.734500"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, I hear you, cat. It sounds like something is really bothering you right now, and it's completely valid to feel frustrated. I'm here to listen if you'd like to share what's on your mind.",
+      "timestamp": "2025-11-08T18:33:15.333018"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T18:33:24.743887"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, cat, I hear you. Feeling anxious can be really unsettling, and it's completely understandable to feel that way sometimes. I'm here if you'd like to share more about what's on your mind.",
+      "timestamp": "2025-11-08T18:33:28.546693"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T18:36:44.752306"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, cat, that's wonderful to hear! It's so lovely when those happy feelings arrive. What's bringing you joy today?",
+      "timestamp": "2025-11-08T18:36:48.661864"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:37:19.563147"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, cat, I hear that frustration loud and clear. That can be a really tough feeling to carry, and it's completely understandable to feel that way sometimes. I'm here if you'd like to share what's on your mind.",
+      "timestamp": "2025-11-08T18:37:23.223476"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:40:47.567134"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, cat, I hear that frustration is still very much with you, and it's completely understandable for feelings to linger sometimes. Please know it's okay to feel this way. I'm still here to listen if you feel like sharing more.",
+      "timestamp": "2025-11-08T18:40:50.903720"
+    }
+  ],
+  "mon": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:50:46.871505"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, mon, I hear that you're feeling really frustrated right now. That's a completely valid feeling to have. Would you like to share a little more about what's going on?",
+      "timestamp": "2025-11-08T18:50:50.899969"
+    }
+  ],
+  "dfd": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:52:23.122361"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfd, I hear you're feeling a lot of frustration right now. It's completely understandable to feel that way, and it's okay to acknowledge those feelings. Would you like to share what's making you feel this way?",
+      "timestamp": "2025-11-08T18:52:28.096174"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:57:22.485326"
+    },
+    {
+      "role": "assistant",
+      "content": "It sounds like that frustration is still very intense and present for you, dfd. It can be incredibly draining when a feeling like that just won't let up. I'm here to listen if you want to share more, or if you just need to sit with the feeling for a bit.",
+      "timestamp": "2025-11-08T18:57:27.821115"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T18:58:11.558503"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfd, that frustration is still intensely present for you, and it must feel incredibly heavy when an emotion lingers like this. It's completely understandable to feel overwhelmed by it. Is there anything at all that might offer even a small moment of comfort or a tiny shift for you right now?",
+      "timestamp": "2025-11-08T18:58:15.581299"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T19:00:44.493570"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfd, what a wonderful shift! It's truly lovely to see that \"happy\" emoji after the frustration you were feeling. What brought about this positive change for you?",
+      "timestamp": "2025-11-08T19:00:48.138220"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T19:00:57.506921"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfd, it seems that frustration has returned, and it must feel disorienting after that moment of happiness you just experienced. It's completely okay for feelings to shift quickly like that. I'm here if you want to talk about what's coming up for you.",
+      "timestamp": "2025-11-08T19:00:59.680546"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T19:03:37.922241"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfd, I hear that frustration is still very present for you, and it must be incredibly difficult to feel it resurface again. It's completely understandable to feel that way. I'm here for you if you'd like to share more about what's happening.",
+      "timestamp": "2025-11-08T19:03:41.143040"
+    }
+  ],
+  "sd": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T19:04:15.014987"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, sd, I hear that you're feeling a strong sense of frustration right now. It's completely valid to feel that way, and I'm here to listen. Would you like to share a little more about what's on your mind?",
+      "timestamp": "2025-11-08T19:04:17.900973"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T19:04:30.387957"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, sd, what a lovely shift to hear you're feeling happy now! It's wonderful to embrace those positive feelings. Would you like to share a little about what's bringing you joy?",
+      "timestamp": "2025-11-08T19:04:34.569671"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T19:04:38.657265"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, sd, I hear that you're feeling anxious right now. It's completely understandable to experience those feelings, and it takes courage to acknowledge them. Sometimes just talking about it can help lighten the load; would you like to share a little more about what's on your mind?",
+      "timestamp": "2025-11-08T19:04:42.577659"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T19:04:45.805363"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, sd, I hear that you're feeling sad right now. It's completely understandable to experience moments of sadness, and it takes strength to acknowledge them. I'm here to listen if you'd like to share what's on your mind.",
+      "timestamp": "2025-11-08T19:04:48.054517"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-08T19:04:53.632117"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, sd, I hear you're feeling neutral right now. It's completely okay to be in a place of neutrality, and sometimes that can be a calm space to simply exist. If you'd like to share what that feels like for you, I'm here to listen.",
+      "timestamp": "2025-11-08T19:04:56.649658"
+    }
+  ],
+  "illu": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-08T19:07:29.913765"
+    },
+    {
+      "role": "assistant",
+      "content": "Thanks for letting me know, illu. Neutral can be a calm space, or sometimes it's a bit of an 'in-between' feeling. What does 'neutral' feel like for you today?",
+      "timestamp": "2025-11-08T19:07:34.383505"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T19:07:38.662477"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, illu, I'm truly sorry to hear you're feeling sad. It's completely valid to feel that way, and I'm here to listen if you'd like to share what's on your mind.",
+      "timestamp": "2025-11-08T19:07:43.159605"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T19:07:57.419097"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, illu, I hear that frustration, and it's completely understandable to feel that way. It can be really tough when things just aren't going right. Would you like to share a bit about what's making you feel frustrated today?",
+      "timestamp": "2025-11-08T19:07:59.695635"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T19:08:04.220423"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, illu, that's wonderful news! It's lovely to hear that you're feeling happy today. Would you like to share what's bringing that joy into your day?",
+      "timestamp": "2025-11-08T19:08:06.655922"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-08T19:08:14.580812"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, illu, I hear that you're feeling anxious right now, and that's a really tough emotion to carry. It's completely valid to feel that way, and I'm here to listen without judgment. Would you like to share a bit about what's making you feel anxious today?",
+      "timestamp": "2025-11-08T19:08:16.919870"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T19:10:49.352261"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, illu, I hear that you're feeling sad right now, and it's completely valid to feel that way. It's okay to experience sadness, and I'm here to listen if you'd like to share what's on your mind.",
+      "timestamp": "2025-11-08T19:10:51.325591"
+    }
+  ],
+  "bully": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-08T19:18:33.168705"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, bully, I'm sorry to hear you're feeling sad. It's completely understandable to feel that way sometimes. Would you like to share a little about what's on your mind?",
+      "timestamp": "2025-11-08T19:18:36.848559"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T19:18:44.498742"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, bully, I understand that feeling of frustration. It can be really overwhelming sometimes, and it's completely okay to feel that way. Would you like to share what's making you feel frustrated, or just sit with the feeling for a bit?",
+      "timestamp": "2025-11-08T19:18:47.478690"
+    }
+  ],
+  "dfdfd": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T19:58:30.190585"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfdfd, I hear that you're feeling really frustrated right now. That's a completely understandable emotion to experience. Would you like to share a bit about what's on your mind?",
+      "timestamp": "2025-11-08T19:58:34.246457"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-08T19:58:41.276760"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfdfd, that's wonderful to hear! It sounds like something positive has shifted for you.\n\nI'm glad to know you're feeling happy now. Would you like to share what brought about this change?",
+      "timestamp": "2025-11-08T19:58:43.037691"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-08T19:59:23.058722"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, dfdfd, I hear that frustration coming through again. It sounds like those feelings are still very present for you, and that's completely valid. Sometimes it can be tough when a feeling lingers. Would you like to talk more about what's making you feel this way?",
+      "timestamp": "2025-11-08T19:59:25.229320"
+    }
+  ]
+}
