@@ -56,7 +56,7 @@ function PetRoom({ userName, moodHistory = [], onBackToChat }) {
           break;
         
         // Sad (low happiness, LOW hunger to avoid conflict)
-        case '😢': case '😭': case '😞': case '☹️': case '🙁':
+        case '😢': case '😭': case '😞': case '😔': case '🙁':
           newStats = { 
             happiness: 20, 
             hunger: 35, 

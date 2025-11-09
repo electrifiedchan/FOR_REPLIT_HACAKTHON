@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import '@tensorflow/tfjs';
 import './App.css';
 import LandingPage from './LandingPage';
+import Dashboard from './Dashboard';
 import MoodTracker from './MoodTracker';
 import PetRoom from './PetRoom';
 import VoiceSentiment from './VoiceSentiment';
@@ -11,6 +13,7 @@ function App() {
   // --- STATE VARIABLES ---
   const [showLandingPage, setShowLandingPage] = useState(true);
   const [showNameInput, setShowNameInput] = useState(true);
+  const [showDashboard, setShowDashboard] = useState(false);
   const [currentPage, setCurrentPage] = useState('chat');
   const [userName, setUserName] = useState('');
   const [messages, setMessages] = useState([
@@ -36,6 +39,9 @@ function App() {
   const [voiceEmotionBuffer, setVoiceEmotionBuffer] = useState([]); // For voice buffering
   const [isVideoActive, setIsVideoActive] = useState(false); // Video sentiment state
   const [lastVideoResponseTime, setLastVideoResponseTime] = useState(0);
+
+  // Page key for transitions
+  const [pageKey, setPageKey] = useState('landing');
   
   // Refs
   const messagesEndRef = useRef(null);
@@ -43,6 +49,7 @@ function App() {
   const inputRef = useRef(null);
   const abortControllerRef = useRef(null);
   const typingTimeoutRef = useRef(null);
+  const nodeRef = useRef(null); // For CSSTransition compatibility with React 19
 
   // --- CONSTANTS ---
   const QUICK_REPLIES = useMemo(() => [
@@ -237,6 +244,7 @@ function App() {
   const handleStartChat = useCallback(() => {
     logAnalytics('USER_ACTION', { action: 'Started chat from landing page' });
     setShowLandingPage(false);
+    setPageKey('nameInput');
   }, [logAnalytics]);
 
   const handleNameSubmit = useCallback(() => {
@@ -246,6 +254,12 @@ function App() {
     }
     logAnalytics('USER_INFO', { userName, nameLength: userName.length });
     setShowNameInput(false);
+    setShowDashboard(true);
+    setPageKey('dashboard');
+  }, [userName, logAnalytics]);
+
+  const handleStartChatFromDashboard = useCallback(() => {
+    setShowDashboard(false);
     setMessages(prev => [
       ...prev,
       {
@@ -254,7 +268,19 @@ function App() {
         timestamp: new Date().toISOString()
       }
     ]);
+    setPageKey('chat');
+    logAnalytics('NAVIGATION', { from: 'dashboard', to: 'chat' });
   }, [userName, logAnalytics]);
+
+  const handleLogout = useCallback(() => {
+    window.location.reload();
+  }, []);
+
+  const handleBackToDashboard = useCallback(() => {
+    setShowDashboard(true);
+    setPageKey('dashboard');
+    logAnalytics('NAVIGATION', { from: 'chat', to: 'dashboard' });
+  }, [logAnalytics]);
 
   // --- MAIN SEND FUNCTION (Refactored to accept text) ---
   const handleSend = useCallback(async (messageText) => {
@@ -652,70 +678,96 @@ function App() {
     );
   });
 
-  // --- RENDER LOGIC ---
-  
-  if (showLandingPage) {
-    return <LandingPage onStart={handleStartChat} />;
-  }
+  // --- RENDER LOGIC WITH SMOOTH TRANSITIONS ---
 
-  if (showNameInput) {
-    return (
-      <div className="App">
-        <div className="name-input-screen">
-          <div className="name-input-content">
-            <h1 className="name-input-title">
-              <span className="emoji-pulse">💚</span>
-              Mental Wellness Companion
-            </h1>
-            <p className="name-input-subtitle">
-              Welcome! I'm here to support you. What should I call you?
-            </p>
-            <div className="name-input-container">
-              <input
-                type="text"
-                value={userName}
-                onChange={handleNameChange}
-                onKeyPress={handleNameKeyPress}
-                placeholder="Enter your name..."
-                aria-label="Enter your name"
-                autoFocus
-                maxLength="50"
-                className="name-input-field"
-              />
-              <span className="name-input-count">
-                {userName.length}/50
-              </span>
-            </div>
-            <button
-              onClick={handleNameSubmit}
-              disabled={!userName.trim() || userName.length < 2}
-              className="name-input-button"
-              aria-label="Start chat"
-            >
-              <span className="button-icon">💚</span>
-              Start Chat
-              <span className="button-arrow">→</span>
-            </button>
-            <p className="name-input-help">
-              Press Enter or click the button to begin
-            </p>
+  // Determine which page to show
+  let currentPageComponent;
+
+  if (showLandingPage) {
+    currentPageComponent = <LandingPage onStart={handleStartChat} />;
+  } else if (showDashboard) {
+    currentPageComponent = (
+      <Dashboard
+        userName={userName}
+        onLogout={handleLogout}
+        onStartChat={handleStartChatFromDashboard}
+      />
+    );
+  } else if (showNameInput) {
+    currentPageComponent = (
+      <div className="name-input-screen">
+        <div className="name-input-content">
+          <h1 className="name-input-title">
+            <span className="emoji-pulse">💚</span>
+            Mental Wellness Companion
+          </h1>
+          <p className="name-input-subtitle">
+            Welcome! I'm here to support you. What should I call you?
+          </p>
+          <div className="name-input-container">
+            <input
+              type="text"
+              value={userName}
+              onChange={handleNameChange}
+              onKeyPress={handleNameKeyPress}
+              placeholder="Enter your name..."
+              aria-label="Enter your name"
+              autoFocus
+              maxLength="50"
+              className="name-input-field"
+            />
+            <span className="name-input-count">
+              {userName.length}/50
+            </span>
           </div>
-          <div className="name-input-features">
-            <div className="feature">
-              <span>🔒</span>
-              <p>100% Private</p>
-            </div>
-            <div className="feature">
-              <span>♿</span>
-              <p>Accessible</p>
-            </div>
-            <div className="feature">
-              <span>24/7</span>
-              <p>Always Available</p>
-            </div>
+          <button
+            onClick={handleNameSubmit}
+            disabled={!userName.trim() || userName.length < 2}
+            className="name-input-button"
+            aria-label="Start chat"
+          >
+            <span className="button-icon">💚</span>
+            Start Chat
+            <span className="button-arrow">→</span>
+          </button>
+          <p className="name-input-help">
+            Press Enter or click the button to begin
+          </p>
+        </div>
+        <div className="name-input-features">
+          <div className="feature">
+            <span>🔒</span>
+            <p>100% Private</p>
+          </div>
+          <div className="feature">
+            <span>♿</span>
+            <p>Accessible</p>
+          </div>
+          <div className="feature">
+            <span>24/7</span>
+            <p>Always Available</p>
           </div>
         </div>
       </div>
+    );
+  }
+
+  // If we have a page component (landing, dashboard, or name input), wrap it with transitions
+  if (currentPageComponent) {
+    return (
+      <SwitchTransition mode="out-in">
+        <CSSTransition
+          key={pageKey}
+          nodeRef={nodeRef}
+          timeout={600}
+          classNames="page-transition"
+          unmountOnExit
+        >
+          <div ref={nodeRef} className="App">
+            {currentPageComponent}
+          </div>
+        </CSSTransition>
+      </SwitchTransition>
     );
   }
 
@@ -747,6 +799,15 @@ function App() {
       <header className="App-header">
         <div className="chat-header">
           <div className="chat-header-content">
+            <button
+              className="back-to-dashboard-btn"
+              onClick={handleBackToDashboard}
+              title="Back to Dashboard"
+              aria-label="Back to Dashboard"
+            >
+              <span className="back-icon">←</span>
+              <span className="back-text">Dashboard</span>
+            </button>
             <h1 className="chat-title">
               <span className="title-icon">💚</span>
               Mental Wellness Companion
@@ -756,7 +817,7 @@ function App() {
               <span className="session-badge">{messageCount} messages</span>
             </p>
           </div>
-          
+
           <div className="chat-header-actions">
             <div className="accessibility-menu">
               <button 

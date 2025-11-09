@@ -711,6 +711,78 @@
       "role": "user",
       "content": "\ud83d\ude21 Frustrated",
       "timestamp": "2025-11-09T01:08:34.204423"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, ssd, it sounds like you're feeling incredibly frustrated right now. That's a really tough emotion to carry, and it's completely okay to feel that way. Would you like to tell me a bit more about what's going on?",
+      "timestamp": "2025-11-09T01:08:38.135115"
+    }
+  ],
+  "bob": [
+    {
+      "role": "user",
+      "content": "hiii",
+      "timestamp": "2025-11-09T06:16:08.628439"
+    },
+    {
+      "role": "assistant",
+      "content": "Hi Bob! It's good to hear from you. How are you feeling today?",
+      "timestamp": "2025-11-09T06:16:10.961131"
+    },
+    {
+      "role": "user",
+      "content": "great",
+      "timestamp": "2025-11-09T06:16:20.894758"
+    },
+    {
+      "role": "assistant",
+      "content": "That's wonderful to hear, Bob! I'm so glad you're feeling great. Is there anything specific that's making today feel so good?",
+      "timestamp": "2025-11-09T06:16:23.817100"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-09T06:17:17.067029"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, I hear a shift there, Bob. It sounds like something's come up that's making you feel frustrated, and that's completely understandable. Would you like to share a bit about what's on your mind?",
+      "timestamp": "2025-11-09T06:17:19.312005"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-09T06:17:47.914441"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, Bob, I'm sorry to hear that you're feeling sad now. It's completely okay to feel that way, and I'm here to listen without judgment. Would you like to talk a little about what's making you feel sad?",
+      "timestamp": "2025-11-09T06:17:49.977999"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-09T06:18:48.766892"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, Bob, I'm truly sorry to hear you're feeling anxious now. That can be such a heavy feeling, and it's completely understandable to feel that way. I'm here to listen if you'd like to share what's on your mind.",
+      "timestamp": "2025-11-09T06:18:51.777630"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-09T06:18:52.467057"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, Bob, I'm truly sorry to hear that sadness is still weighing on you. It's completely understandable to feel that way, and please know that your feelings are valid. I'm right here with you, if you'd like to talk more about what's on your mind.",
+      "timestamp": "2025-11-09T06:18:55.576625"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-09T06:20:40.470797"
     }
   ]
 }
