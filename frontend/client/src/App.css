@@ -367,44 +367,40 @@ select:focus-visible {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Page transition effects - Ultra smooth */
-.page-transition {
-  animation-fill-mode: both;
-  will-change: opacity, transform;
+/* Page transition effects - Ultra smooth with React Transition Group */
+
+/* Enter transition - Initial state */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  filter: blur(5px);
 }
 
-.page-enter {
-  animation: pageEnter 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+/* Enter transition - Active state (animating to) */
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  transition: opacity 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              transform 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              filter 600ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.page-exit {
-  animation: pageExit 0.3s cubic-bezier(0.4, 0, 0.6, 1);
+/* Exit transition - Initial state */
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
-@keyframes pageEnter {
-  0% {
-    opacity: 0;
-    transform: translateY(30px) scale(0.98);
-    filter: blur(5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-}
-
-@keyframes pageExit {
-  0% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    filter: blur(0);
-  }
-  100% {
-    opacity: 0;
-    transform: translateY(-30px) scale(0.98);
-    filter: blur(5px);
-  }
+/* Exit transition - Active state (animating to) */
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-30px) scale(0.98);
+  filter: blur(5px);
+  transition: opacity 300ms cubic-bezier(0.4, 0, 0.6, 1),
+              transform 300ms cubic-bezier(0.4, 0, 0.6, 1),
+              filter 300ms cubic-bezier(0.4, 0, 0.6, 1);
 }
 
 /* Legacy transition classes for compatibility */
@@ -3666,5 +3662,165 @@ a,
   .stat:hover,
   .feature-card:hover {
     transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   9. ZEN MODE - FULL SCREEN BREATHING OVERLAY
+==========================================================================
+*/
+
+.zen-mode-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg,
+    rgba(15, 10, 26, 0.98) 0%,
+    rgba(26, 22, 51, 0.98) 50%,
+    rgba(45, 27, 78, 0.98) 100%
+  );
+  backdrop-filter: blur(20px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.zen-mode-content {
+  text-align: center;
+  padding: 40px;
+  max-width: 600px;
+}
+
+.zen-breathing-circle {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(57, 255, 20, 0.3) 0%,
+    rgba(0, 240, 255, 0.2) 50%,
+    transparent 100%
+  );
+  border: 3px solid var(--neon-green);
+  box-shadow:
+    0 0 40px rgba(57, 255, 20, 0.5),
+    inset 0 0 40px rgba(57, 255, 20, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: all 4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Breathing phase animations */
+.zen-breathing-circle.inhale {
+  transform: scale(1.4);
+  opacity: 1;
+  border-color: var(--neon-cyan);
+  box-shadow:
+    0 0 60px rgba(0, 240, 255, 0.7),
+    inset 0 0 60px rgba(0, 240, 255, 0.4);
+}
+
+.zen-breathing-circle.hold1,
+.zen-breathing-circle.hold2 {
+  transform: scale(1.4);
+  opacity: 0.9;
+  border-color: var(--accent-purple);
+  box-shadow:
+    0 0 50px rgba(191, 0, 255, 0.6),
+    inset 0 0 50px rgba(191, 0, 255, 0.3);
+}
+
+.zen-breathing-circle.exhale {
+  transform: scale(1);
+  opacity: 0.6;
+  border-color: var(--neon-green);
+  box-shadow:
+    0 0 40px rgba(57, 255, 20, 0.5),
+    inset 0 0 40px rgba(57, 255, 20, 0.3);
+}
+
+.zen-phase-text {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(57, 255, 20, 0.6);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.zen-title {
+  font-size: var(--font-size-3xl);
+  color: var(--neon-green);
+  margin-bottom: 20px;
+  text-shadow:
+    0 0 20px rgba(57, 255, 20, 0.8),
+    0 0 40px rgba(57, 255, 20, 0.5);
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.zen-instructions {
+  font-size: var(--font-size-xl);
+  color: var(--text-primary);
+  margin-bottom: 30px;
+  line-height: 1.8;
+  min-height: 40px;
+  font-weight: 500;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.zen-timer {
+  font-size: var(--font-size-lg);
+  color: var(--neon-cyan);
+  margin-bottom: 40px;
+  animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.zen-exit-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 12px 30px;
+  border-radius: 12px;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: fadeIn 1.2s ease-out 0.6s both;
+}
+
+.zen-exit-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--neon-green);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(57, 255, 20, 0.3);
+}
+
+.zen-exit-btn:focus-visible {
+  outline: 3px solid var(--neon-green);
+  outline-offset: 4px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .zen-breathing-circle {
+    width: 150px;
+    height: 150px;
+  }
+
+  .zen-title {
+    font-size: var(--font-size-2xl);
+  }
+
+  .zen-instructions {
+    font-size: var(--font-size-base);
   }
 }

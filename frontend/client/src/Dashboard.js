@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 
-function Dashboard({ userName, onLogout, onStartChat }) {
+function Dashboard({
+  userName,
+  onLogout,
+  onStartChat,
+  onVisitPet,
+  onStartBreathing,
+  sessionCount = 1,
+  messageCount = 0,
+  moodHistory = [],
+  sessionStartTime
+}) {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [greeting, setGreeting] = useState('');
 
@@ -27,11 +37,20 @@ function Dashboard({ userName, onLogout, onStartChat }) {
   };
 
   const formatTime = (date) => {
-    return date.toLocaleTimeString('en-US', { 
-      hour: '2-digit', 
+    return date.toLocaleTimeString('en-US', {
+      hour: '2-digit',
       minute: '2-digit',
       second: '2-digit'
     });
+  };
+
+  // Calculate days active
+  const getDaysActive = () => {
+    if (!sessionStartTime) return 1;
+    const now = new Date();
+    const diffTime = Math.abs(now - sessionStartTime);
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays;
   };
 
   return (
@@ -83,15 +102,15 @@ function Dashboard({ userName, onLogout, onStartChat }) {
                 <span className="action-icon">💬</span>
                 <span className="action-text">Start Chat</span>
               </button>
-              <button className="action-btn" onClick={() => alert('Mood Tracker coming soon!')}>
+              <button className="action-btn" onClick={onStartChat}>
                 <span className="action-icon">📊</span>
                 <span className="action-text">Track Mood</span>
               </button>
-              <button className="action-btn" onClick={() => alert('Pet Room coming soon!')}>
+              <button className="action-btn" onClick={onVisitPet}>
                 <span className="action-icon">🐱</span>
                 <span className="action-text">Visit Pet</span>
               </button>
-              <button className="action-btn" onClick={() => alert('Breathing Exercise coming soon!')}>
+              <button className="action-btn" onClick={onStartBreathing}>
                 <span className="action-icon">🧘</span>
                 <span className="action-text">Breathe</span>
               </button>
@@ -104,19 +123,19 @@ function Dashboard({ userName, onLogout, onStartChat }) {
             <h3 className="card-title">Your Wellness Stats</h3>
             <div className="stats-grid">
               <div className="stat-item">
-                <div className="stat-value">0<span className="stat-plus">+</span></div>
+                <div className="stat-value">{sessionCount}<span className="stat-plus">+</span></div>
                 <div className="stat-label">Sessions</div>
               </div>
               <div className="stat-item">
-                <div className="stat-value">0<span className="stat-plus">+</span></div>
+                <div className="stat-value">{messageCount}<span className="stat-plus">+</span></div>
                 <div className="stat-label">Messages</div>
               </div>
               <div className="stat-item">
-                <div className="stat-value">0<span className="stat-plus">+</span></div>
+                <div className="stat-value">{moodHistory.length}<span className="stat-plus">+</span></div>
                 <div className="stat-label">Moods Tracked</div>
               </div>
               <div className="stat-item">
-                <div className="stat-value">0<span className="stat-plus">+</span></div>
+                <div className="stat-value">{getDaysActive()}<span className="stat-plus">+</span></div>
                 <div className="stat-label">Days Active</div>
               </div>
             </div>

@@ -783,6 +783,132 @@
       "role": "user",
       "content": "\ud83d\ude14 Sad",
       "timestamp": "2025-11-09T06:20:40.470797"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, Bob, I'm truly sorry that sadness is still with you. It takes courage to acknowledge these feelings, and please know I'm still right here for you, just listening.",
+      "timestamp": "2025-11-09T06:20:44.073146"
+    }
+  ],
+  "no": [
+    {
+      "role": "user",
+      "content": "hii",
+      "timestamp": "2025-11-09T06:53:09.539065"
+    },
+    {
+      "role": "assistant",
+      "content": "Hi no! It's nice to connect with you. How are you doing today?",
+      "timestamp": "2025-11-09T06:53:12.632461"
+    },
+    {
+      "role": "user",
+      "content": "great",
+      "timestamp": "2025-11-09T06:53:20.169921"
+    },
+    {
+      "role": "assistant",
+      "content": "That's wonderful to hear! I'm so glad you're feeling great. What's making today feel so good?",
+      "timestamp": "2025-11-09T06:53:22.502001"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-09T06:53:25.485160"
+    },
+    {
+      "role": "assistant",
+      "content": "That's absolutely wonderful to hear, no! It sounds like you're feeling truly happy, and that's such a lovely feeling to embrace. Is there anything in particular that's making you smile today?",
+      "timestamp": "2025-11-09T06:53:29.965004"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-09T06:53:34.781511"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, no, it sounds like your feelings have shifted, and it's completely understandable to feel frustrated sometimes. That can be a really challenging emotion to navigate. Is there anything on your mind that's contributing to this feeling right now?",
+      "timestamp": "2025-11-09T06:53:37.561874"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-09T06:53:42.251463"
+    },
+    {
+      "role": "assistant",
+      "content": "Ah, no, it sounds like you're feeling a sense of neutrality right now. It's perfectly fine to be in a calm, balanced space, and sometimes that can feel quite peaceful. Is there anything specific on your mind, or is it just a general sense of calm today?",
+      "timestamp": "2025-11-09T06:53:46.349776"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude10 Neutral",
+      "timestamp": "2025-11-09T06:53:53.629732"
+    },
+    {
+      "role": "assistant",
+      "content": "Thanks for letting me know, no. It sounds like you're continuing to feel a sense of neutrality, and that's perfectly okay. Sometimes being in a balanced state can feel quite peaceful, offering a quiet moment. What does this feeling of neutrality mean to you today?",
+      "timestamp": "2025-11-09T06:53:57.864957"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude30 Anxious",
+      "timestamp": "2025-11-09T06:54:05.394454"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, no, it sounds like you're feeling anxious right now. That can be a really challenging and unsettling feeling to experience, and it's completely understandable. Would you like to share a bit about what might be on your mind?",
+      "timestamp": "2025-11-09T06:54:08.418890"
+    }
+  ],
+  "sfd": [
+    {
+      "role": "user",
+      "content": "\ud83d\ude0a Happy",
+      "timestamp": "2025-11-09T07:03:07.919736"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, sfd, that's such wonderful news! It's truly lovely to hear you're feeling happy. Is there something special bringing you so much joy today?",
+      "timestamp": "2025-11-09T07:03:11.787090"
+    }
+  ],
+  "Bob": [
+    {
+      "role": "user",
+      "content": "Hii",
+      "timestamp": "2025-11-09T07:11:22.906234"
+    },
+    {
+      "role": "assistant",
+      "content": "Hi Bob! It's great to connect with you. How are you doing today?",
+      "timestamp": "2025-11-09T07:11:25.830223"
+    },
+    {
+      "role": "user",
+      "content": "great",
+      "timestamp": "2025-11-09T07:11:29.975970"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, that's fantastic, Bob! I'm genuinely happy to hear you're having a great day. What's contributing to that wonderful feeling?",
+      "timestamp": "2025-11-09T07:11:33.775251"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude21 Frustrated",
+      "timestamp": "2025-11-09T07:11:42.086874"
+    },
+    {
+      "role": "assistant",
+      "content": "Oh, Bob, it sounds like that wonderful feeling has shifted, and now you're experiencing some real frustration. That can be a tough emotion to navigate. Would you feel comfortable sharing a little more about what's contributing to that feeling?",
+      "timestamp": "2025-11-09T07:11:45.425197"
+    },
+    {
+      "role": "user",
+      "content": "\ud83d\ude14 Sad",
+      "timestamp": "2025-11-09T07:12:10.066527"
     }
   ]
 }

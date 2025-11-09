@@ -42,6 +42,14 @@ function App() {
 
   // Page key for transitions
   const [pageKey, setPageKey] = useState('landing');
+
+  // Zen mode for breathing
+  const [zenModeActive, setZenModeActive] = useState(false);
+  const [zenTimer, setZenTimer] = useState(60);
+  const [breathingPhase, setBreathingPhase] = useState('inhale'); // inhale, hold1, exhale, hold2
+
+  // Session count
+  const [sessionCount, setSessionCount] = useState(1);
   
   // Refs
   const messagesEndRef = useRef(null);
@@ -130,13 +138,16 @@ function App() {
     return `${minutes}m ${seconds}s`;
   }, [currentTime, sessionStartTime]);
 
-  // --- NEW: Breathing Exercise ---
+  // --- NEW: Breathing Exercise with Zen Mode ---
   const startBreathingExercise = useCallback(() => {
     if (breathingExerciseActive) return; // Prevent multiple clicks
 
     setBreathingExerciseActive(true);
+    setZenModeActive(true); // Enable Zen Mode
+    setZenTimer(60); // Reset timer
+    setBreathingPhase('inhale'); // Start with inhale
     logAnalytics('FEATURE_USE', { feature: 'breathing_exercise' });
-    
+
     const breathingMessage = {
       from: 'bot',
       text: "Let's take a moment to breathe together. 🧘‍♀️\n\n• Inhale deeply for 4 seconds\n• Hold for 4 seconds\n• Exhale slowly for 4 seconds\n• Hold for 4 seconds\n\nRepeat 3 times. I'll wait here for you.",
@@ -144,7 +155,7 @@ function App() {
       isBreathing: true
     };
     setMessages(prev => [...prev, breathingMessage]);
-    
+
     setTimeout(() => {
       const followUp = {
         from: 'bot',
@@ -153,6 +164,7 @@ function App() {
       };
       setMessages(prev => [...prev, followUp]);
       setBreathingExerciseActive(false);
+      setZenModeActive(false); // Disable Zen Mode
     }, 60000); // 60 seconds
   }, [breathingExerciseActive, logAnalytics]); // Add dependency
 
@@ -216,12 +228,43 @@ function App() {
     };
   }, []);
 
+  // --- ZEN MODE TIMER AND BREATHING PHASES ---
+  useEffect(() => {
+    if (!zenModeActive) return;
+
+    // Countdown timer
+    const timerInterval = setInterval(() => {
+      setZenTimer(prev => {
+        if (prev <= 1) {
+          clearInterval(timerInterval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    // Breathing phase cycle (4 seconds each phase = 16 seconds total cycle)
+    const phaseInterval = setInterval(() => {
+      setBreathingPhase(prev => {
+        if (prev === 'inhale') return 'hold1';
+        if (prev === 'hold1') return 'exhale';
+        if (prev === 'exhale') return 'hold2';
+        return 'inhale'; // Reset cycle
+      });
+    }, 4000); // 4 seconds per phase
+
+    return () => {
+      clearInterval(timerInterval);
+      clearInterval(phaseInterval);
+    };
+  }, [zenModeActive]);
+
   // --- PROACTIVE WELLNESS NUDGE ---
   useEffect(() => {
     if (moodHistory.length >= 3) {
       const recentMoods = moodHistory.slice(-3);
       const allNegative = recentMoods.every(m => m.value <= 2);
-      
+
       if (allNegative && messages.length > 0 && !messages[messages.length - 1]?.isProactive && !messages[messages.length - 1]?.hasBreathingOption) {
         const supportMessage = {
           from: 'bot',
@@ -230,11 +273,11 @@ function App() {
           isProactive: true,
           hasBreathingOption: true
         };
-        
+
         const timer = setTimeout(() => {
           setMessages(prev => [...prev, supportMessage]);
         }, 5000);
-        
+
         return () => clearTimeout(timer);
       }
     }
@@ -253,6 +296,7 @@ function App() {
       return;
     }
     logAnalytics('USER_INFO', { userName, nameLength: userName.length });
+    setSessionCount(prev => prev + 1); // Increment session count
     setShowNameInput(false);
     setShowDashboard(true);
     setPageKey('dashboard');
@@ -638,6 +682,19 @@ function App() {
     logAnalytics('NAVIGATION', { from: 'chat', to: 'pet', moodTrend });
   }, [moodTrend, logAnalytics]);
 
+  const handleVisitPetFromDashboard = useCallback(() => {
+    setShowDashboard(false);
+    setCurrentPage('pet');
+    setUnreadPetNotifications(false);
+    logAnalytics('NAVIGATION', { from: 'dashboard', to: 'pet' });
+  }, [logAnalytics]);
+
+  const handleStartBreathingFromDashboard = useCallback(() => {
+    setShowDashboard(false);
+    startBreathingExercise();
+    logAnalytics('NAVIGATION', { from: 'dashboard', to: 'chat_breathing' });
+  }, [logAnalytics, startBreathingExercise]);
+
   // --- RENDER MESSAGE COMPONENT (Memoized for performance) ---
   const MessageComponent = React.memo(({ msg, index }) => {
     const timestamp = new Date(msg.timestamp).toLocaleTimeString([], { 
@@ -691,6 +748,12 @@ function App() {
         userName={userName}
         onLogout={handleLogout}
         onStartChat={handleStartChatFromDashboard}
+        onVisitPet={handleVisitPetFromDashboard}
+        onStartBreathing={handleStartBreathingFromDashboard}
+        sessionCount={sessionCount}
+        messageCount={messageCount}
+        moodHistory={moodHistory}
+        sessionStartTime={sessionStartTime}
       />
     );
   } else if (showNameInput) {
@@ -791,6 +854,42 @@ function App() {
       className={`App font-${fontSize} ${highContrast ? 'high-contrast' : ''}`}
       style={appStyle}
     >
+      {/* Zen Mode - Full Screen Breathing Overlay */}
+      {zenModeActive && (
+        <div className="zen-mode-overlay">
+          <div className="zen-mode-content">
+            <div className={`zen-breathing-circle ${breathingPhase}`}>
+              <div className="zen-phase-text">
+                {breathingPhase === 'inhale' && '🌬️ Breathe In'}
+                {breathingPhase === 'hold1' && '⏸️ Hold'}
+                {breathingPhase === 'exhale' && '💨 Breathe Out'}
+                {breathingPhase === 'hold2' && '⏸️ Hold'}
+              </div>
+            </div>
+            <h2 className="zen-title">Breathe with me 🧘‍♀️</h2>
+            <p className="zen-instructions">
+              {breathingPhase === 'inhale' && 'Inhale deeply through your nose...'}
+              {breathingPhase === 'hold1' && 'Hold your breath...'}
+              {breathingPhase === 'exhale' && 'Exhale slowly through your mouth...'}
+              {breathingPhase === 'hold2' && 'Hold and relax...'}
+            </p>
+            <p className="zen-timer">
+              {zenTimer > 0 ? `${zenTimer} seconds remaining` : 'Complete! 🎉'}
+            </p>
+            <button
+              className="zen-exit-btn"
+              onClick={() => {
+                setZenModeActive(false);
+                setBreathingExerciseActive(false);
+              }}
+              aria-label="Exit zen mode"
+            >
+              Exit Zen Mode
+            </button>
+          </div>
+        </div>
+      )}
+
       {/* Video Sentiment - Floating Overlay */}
       {isVideoActive && (
         <VideoSentiment onFaceSentimentDetected={handleVideoSentimentDetected} />
